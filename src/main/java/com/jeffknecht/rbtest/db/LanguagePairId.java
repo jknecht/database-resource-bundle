@@ -6,6 +6,13 @@ public class LanguagePairId implements Serializable {
 	private String bundle;	
 	private String key;
 	
+	public LanguagePairId() {}
+	
+	public LanguagePairId(String bundleName, String key) {
+		this.bundle = bundleName;
+		this.key = key;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
