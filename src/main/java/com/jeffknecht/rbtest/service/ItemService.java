@@ -9,18 +9,18 @@ import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jeffknecht.rbtest.DatabaseBundleControl;
-import com.jeffknecht.rbtest.db.LanguagePair;
-import com.jeffknecht.rbtest.db.LanguagePairRepository;
+import com.jeffknecht.rbtest.common.DatabaseResourceBundleControl;
+import com.jeffknecht.rbtest.db.ResourceBundleItem;
+import com.jeffknecht.rbtest.db.ResourceBundleRepository;
 
 @Service
 public class ItemService {
 
-	@Autowired LanguagePairRepository repo;
+	@Autowired ResourceBundleRepository repo;
 
 	public Collection<Item> findAll(Locale locale) {
 		
-		DatabaseBundleControl control = new DatabaseBundleControl(repo);
+		DatabaseResourceBundleControl control = new DatabaseResourceBundleControl(repo);
 		ResourceBundle rb = ResourceBundle.getBundle("item", locale, control);
 		
 		ArrayList<Item> items = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ItemService {
 	
 	public void updateItems() {
 		{
-			LanguagePair p = new LanguagePair();
+			ResourceBundleItem p = new ResourceBundleItem();
 			p.setBundle("item");
 			p.setKey("tooth");
 			p.setValue("Toothpaste");
@@ -42,7 +42,7 @@ public class ItemService {
 		}
 
 		{
-			LanguagePair p = new LanguagePair();
+			ResourceBundleItem p = new ResourceBundleItem();
 			p.setBundle("item_en");
 			p.setKey("yoga");
 			p.setValue("Yoga Mat");

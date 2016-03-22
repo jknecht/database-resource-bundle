@@ -1,4 +1,4 @@
-package com.jeffknecht.rbtest;
+package com.jeffknecht.rbtest.common;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -7,16 +7,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.jeffknecht.rbtest.db.LanguagePairRepository;
+import com.jeffknecht.rbtest.db.ResourceBundleRepository;
 
-public class DatabaseBundleControl extends ResourceBundle.Control {
+public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 
 	public static final List<String> FORMAT_DATABASE = Collections.unmodifiableList(Arrays.asList("bundle.database"));
-	private LanguagePairRepository repository;
+	private ResourceBundleRepository repository;
 	
-	
-	
-	public DatabaseBundleControl(LanguagePairRepository repository) {
+	public DatabaseResourceBundleControl(ResourceBundleRepository repository) {
 		super();
 		this.repository = repository;
 	}
@@ -37,10 +35,7 @@ public class DatabaseBundleControl extends ResourceBundle.Control {
 
 	@Override
 	public List<Locale> getCandidateLocales(String baseName, Locale locale) {
-		System.err.println("getCandidateLocales: " + baseName + ", " + locale);
-		List<Locale> locales = super.getCandidateLocales(baseName, locale);
-		System.err.println(locales);
-		return locales;
+		return super.getCandidateLocales(baseName, locale);
 	}
 	
 	

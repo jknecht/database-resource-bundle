@@ -17,7 +17,6 @@ public class LanguageController {
 	
 	@RequestMapping("/")
 	public Iterable<Item> index(Locale locale) {
-		System.err.println(locale);
 		return service.findAll(locale);
 	}
 	

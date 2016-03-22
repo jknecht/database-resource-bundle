@@ -2,13 +2,13 @@ package com.jeffknecht.rbtest.db;
 
 import java.io.Serializable;
 
-public class LanguagePairId implements Serializable {
+public class ResourceBundleItemId implements Serializable {
 	private String bundle;	
 	private String key;
 	
-	public LanguagePairId() {}
+	public ResourceBundleItemId() {}
 	
-	public LanguagePairId(String bundleName, String key) {
+	public ResourceBundleItemId(String bundleName, String key) {
 		this.bundle = bundleName;
 		this.key = key;
 	}
@@ -29,7 +29,7 @@ public class LanguagePairId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LanguagePairId other = (LanguagePairId) obj;
+		ResourceBundleItemId other = (ResourceBundleItemId) obj;
 		if (bundle == null) {
 			if (other.bundle != null)
 				return false;

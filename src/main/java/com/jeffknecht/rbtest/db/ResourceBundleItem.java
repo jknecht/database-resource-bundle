@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-@Entity @IdClass(LanguagePairId.class) @Table(name="language_pair")
-public class LanguagePair {
+@Entity @IdClass(ResourceBundleItemId.class) @Table(name="resource_bundle")
+public class ResourceBundleItem {
 	@Id private String bundle;	
 	@Id private String key;
 	private String value;
