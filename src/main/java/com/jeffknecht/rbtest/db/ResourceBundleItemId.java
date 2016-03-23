@@ -3,6 +3,7 @@ package com.jeffknecht.rbtest.db;
 import java.io.Serializable;
 
 public class ResourceBundleItemId implements Serializable {
+	private static final long serialVersionUID = -1242057927277410310L;
 	private String bundle;	
 	private String key;
 	

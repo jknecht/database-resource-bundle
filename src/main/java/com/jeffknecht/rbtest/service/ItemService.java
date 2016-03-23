@@ -49,7 +49,7 @@ public class ItemService {
 			repo.save(p);
 		}
 
-		ResourceBundle.clearCache();
+		//ResourceBundle.clearCache();
 
 	}
 }

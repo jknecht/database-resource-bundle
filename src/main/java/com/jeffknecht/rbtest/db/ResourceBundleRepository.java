@@ -1,5 +1,6 @@
 package com.jeffknecht.rbtest.db;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -10,4 +11,7 @@ public interface ResourceBundleRepository extends CrudRepository<ResourceBundleI
 	@Query("select rbi from ResourceBundleItem rbi where rbi.bundle = ?1")
 	List<ResourceBundleItem> findByBundle(String bundle);
 
+	@Query("select max(rbi.lastModifiedDateTime) from ResourceBundleItem rbi where rbi.bundle = ?1")
+	Timestamp findNewestTimestamp(String bundle);
+	
 }

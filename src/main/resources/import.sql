@@ -1,3 +1,3 @@
-insert into resource_bundle (bundle, key, value) values ('item', 'tooth', 'Toothbrush');
-insert into resource_bundle (bundle, key, value) values ('item', 'pillow', 'Pillow');
-insert into resource_bundle (bundle, key, value) values ('item_es', 'tooth', 'Cepillo de dientes');
+insert into resource_bundle (bundle, property_key, property_value, last_modified_date_time) values ('item', 'tooth', 'Toothbrush', now());
+insert into resource_bundle (bundle, property_key, property_value, last_modified_date_time) values ('item', 'pillow', 'Pillow', now());
+insert into resource_bundle (bundle, property_key, property_value, last_modified_date_time) values ('item_es', 'tooth', 'Cepillo de dientes', now());

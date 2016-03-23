@@ -12,16 +12,11 @@ import sun.util.ResourceBundleEnumeration;
 
 public class DatabaseResourceBundle extends ResourceBundle {
 	ResourceBundleRepository languagePairRepository;
-	String bundleName; 
-	String format;
-	ClassLoader loader;
-	boolean reload;
 	Map<String, Object> lookup;
 	
 	public DatabaseResourceBundle(ResourceBundleRepository languagePairRepository, String bundleName, String format, ClassLoader loader, boolean reload) {
 		super();
 		this.languagePairRepository = languagePairRepository;
-		this.bundleName = bundleName;
 		this.lookup = new HashMap<>();
 		for (ResourceBundleItem pair : languagePairRepository.findByBundle(bundleName)) {
 			lookup.put(pair.getKey(), pair.getValue());
@@ -40,6 +35,8 @@ public class DatabaseResourceBundle extends ResourceBundle {
 	@Override
 	public Enumeration<String> getKeys() {
         ResourceBundle parent = this.parent;
+        
+        // TODO: this is from the sun.util package and needs to be replaced
         return new ResourceBundleEnumeration(lookup.keySet(), (parent != null) ? parent.getKeys() : null);
 	}
 }

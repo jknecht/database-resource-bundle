@@ -1,6 +1,7 @@
 package com.jeffknecht.rbtest.common;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -34,12 +35,27 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 	}
 
 	@Override
-	public List<Locale> getCandidateLocales(String baseName, Locale locale) {
-		return super.getCandidateLocales(baseName, locale);
+	public long getTimeToLive(String baseName, Locale locale) {
+        if (baseName == null || locale == null) {
+            throw new NullPointerException();
+        }
+        // hard-coded 15 seconds for demonstration purposes
+        return 15000;
 	}
 	
-	
-	
-	
-
+	@Override
+	public boolean needsReload(String baseName, Locale locale, String format, ClassLoader loader, ResourceBundle bundle,
+			long loadTime) {
+		if (!FORMAT_DATABASE.contains(format)) {
+			return super.needsReload(baseName, locale, format, loader, bundle, loadTime);
+		}
+		
+		/*
+		 * return true if the database table has been emptied, but the bundle is not.
+		 * return true if the latest timestamp is newer than the supplied loadTime of the current bundle
+		 */
+		Timestamp newestItemTimestamp = repository.findNewestTimestamp(toBundleName(baseName, locale));
+		return ((newestItemTimestamp == null && bundle.getKeys().hasMoreElements()) || newestItemTimestamp.getTime() > loadTime);
+		
+	}
 }
